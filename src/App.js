@@ -1,23 +1,28 @@
-import React from 'react';
-import './App.css';
-import Navbar from './components1/Navbar/Navbar';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Feedback from './components1/Feedback/Feedback';
-import TableNewsV2 from './components1/TableNews/TableNewV2';
-import GridNews from './components1/GridNews/GridNews';
+import React from "react";
+import "./App.css";
+import requests from "./requests";
+import Row from "./Row";
+import Banner from "./Banner";
+import Nav from "./Nav";
 
 function App() {
   return (
-    <>
-      <Router>
-        <Navbar />
-        <Switch>
-          <Route path='/' exact component={GridNews} />
-          <Route path='/feedback' component={Feedback} />
-          <Route path='/tablenews' component={TableNewsV2} />
-        </Switch>
-      </Router>
-    </>
+    <div className="app">
+      <Nav />
+      <Banner />
+      <Row
+        title="NETFLIX ORIGINALS"
+        fetchUrl={requests.fetchNetflixOriginals}
+        isLargeRow
+      />
+      <Row title="Trending" fetchUrl={requests.fetchTrending} />
+      <Row title="TopRated" fetchUrl={requests.fetchTopRated} />
+      <Row title="ActionMovies" fetchUrl={requests.fetchActionMovies} />
+      <Row title="ComedyMovies" fetchUrl={requests.fetchComedyMovies} />
+      <Row title="HorrorMovies" fetchUrl={requests.fetchHorrorMovies} />
+      <Row title="RomanceMovies" fetchUrl={requests.fetchRomanceMovies} />
+      <Row title="Documentaries" fetchUrl={requests.fetchDocumentaries} />
+    </div>
   );
 }
 
